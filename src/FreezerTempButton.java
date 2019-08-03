@@ -5,4 +5,10 @@ public class FreezerTempButton extends GUIButton {
 		super(string);
 	}
 
+	@Override
+	public void inform(RefrigeratorDisplay display) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

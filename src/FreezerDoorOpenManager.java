@@ -30,14 +30,14 @@ import javax.swing.event.EventListenerList;
  * @author Brahma Dathan
  *
  */
-public class FridgeDoorOpenManager {
+public class FreezerDoorOpenManager {
 	private EventListenerList listenerList = new EventListenerList();
-	private static FridgeDoorOpenManager instance;
+	private static FreezerDoorOpenManager instance;
 
 	/**
 	 * Private to make it a singleton
 	 */
-	private FridgeDoorOpenManager() {
+	private FreezerDoorOpenManager() {
 	}
 
 	/**
@@ -45,9 +45,9 @@ public class FridgeDoorOpenManager {
 	 * 
 	 * @return the only instance of the class
 	 */
-	public static FridgeDoorOpenManager instance() {
+	public static FreezerDoorOpenManager instance() {
 		if (instance == null) {
-			instance = new FridgeDoorOpenManager();
+			instance = new FreezerDoorOpenManager();
 		}
 		return instance;
 	}
@@ -57,8 +57,8 @@ public class FridgeDoorOpenManager {
 	 * 
 	 * @param listener an object that wants to listen to the event
 	 */
-	public void addFridgeDoorOpenListener(FridgeDoorOpenListener listener) {
-		listenerList.add(FridgeDoorOpenListener.class, listener);
+	public void addFreezerDoorOpenListener(FreezerDoorOpenListener listener) {
+		listenerList.add(FreezerDoorOpenListener.class, listener);
 	}
 
 	/**
@@ -66,8 +66,8 @@ public class FridgeDoorOpenManager {
 	 * 
 	 * @param listener the object to be removed
 	 */
-	public void removeFridgeDoorOpenListener(FridgeDoorOpenListener listener) {
-		listenerList.remove(FridgeDoorOpenListener.class, listener);
+	public void removeFreezerDoorOpenListener(FreezerDoorOpenListener listener) {
+		listenerList.remove(FreezerDoorOpenListener.class, listener);
 	}
 
 	/**
@@ -75,10 +75,10 @@ public class FridgeDoorOpenManager {
 	 * 
 	 * @param event the CookRequestEvent object
 	 */
-	public void processEvent(FridgeDoorOpenEvent event) {
-		EventListener[] listeners = listenerList.getListeners(FridgeDoorOpenListener.class);
+	public void processEvent(FreezerDoorOpenEvent event) {
+		EventListener[] listeners = listenerList.getListeners(FreezerDoorOpenListener.class);
 		for (int index = 0; index < listeners.length; index++) {
-			((FridgeDoorOpenListener) listeners[index]).fridgeDoorOpened(event);
+			((FreezerDoorOpenListener) listeners[index]).freezerDoorOpened(event);
 		}
 	}
 }

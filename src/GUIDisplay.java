@@ -1,13 +1,17 @@
+
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class GUIDisplay {
+public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 	
 	private static SimpleDisplay frame;
 	
@@ -78,13 +82,17 @@ public class GUIDisplay {
 			statusString.setForeground(Color.RED);
 			topPanel.add(statusString);
 			
+			
+			
+			fridgeDoorOpener.addActionListener(GUIDisplay.this);
+
 			JPanel middlePanel = new JPanel();
 			middlePanel.setLayout(new GridLayout(2,2));
 			middlePanel.add(fridgeDoorOpener);
 			middlePanel.add(fridgeDoorCloser);
 			middlePanel.add(freezerDoorOpener);
 			middlePanel.add(freezerDoorCloser);
-			
+					
 			JPanel bottomPanel = new JPanel();
 			bottomPanel.setLayout(new GridLayout(3,2));
 			bottomPanel.add(fridgeLightString);
@@ -105,16 +113,61 @@ public class GUIDisplay {
 			getContentPane().add(topPanel);
 			getContentPane().add(middlePanel);
 			getContentPane().add(bottomPanel);
-
 			setVisible(true);
 		}
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		((GUIButton) event.getSource()).inform(this);
+	}
+
+
+
+
+	@Override
+	public void displayTimeRemaining(int time) {
+		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public void turnLightOn() {
+		frame.fridgeLightStatus.setText("Light ON");
+		
+	}
+
+
+	@Override
+	public void turnLightOff() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void doorClosed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void doorOpened() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void setTemp() {
+		// TODO Auto-generated method stub
 		
 	}
 	
-
+	
 	public static void main(String[] args) {
 		GUIDisplay display = new GUIDisplay();
 	}
-
 }
