@@ -17,8 +17,8 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 	
 	private GUIDisplay() {
 		frame = new SimpleDisplay();
-		frame.pack();
-//		initialize();
+//		frame.pack();
+		initialize();
 	}
 	/**
 	 * Inner class because the outer class extends RefridgeratorDisplay.
@@ -46,7 +46,7 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 		
 		//the status of light, temp, compressor
 		private JLabel fridgeLightString = new JLabel("Fridge Light ");
-		private JLabel fridgeLightStatus = new JLabel("             ");
+		private JLabel fridgeLightStatus = new JLabel("Light Off");
 		private JLabel freezerLightString = new JLabel("Freezer Light ");
 		private JLabel freezerLightStatus = new JLabel("             ");
 		
@@ -84,7 +84,6 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 			
 			
 			
-			fridgeDoorOpener.addActionListener(GUIDisplay.this);
 
 			JPanel middlePanel = new JPanel();
 			middlePanel.setLayout(new GridLayout(2,2));
@@ -92,7 +91,9 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 			middlePanel.add(fridgeDoorCloser);
 			middlePanel.add(freezerDoorOpener);
 			middlePanel.add(freezerDoorCloser);
-					
+			
+			fridgeDoorOpener.addActionListener(GUIDisplay.this);
+
 			JPanel bottomPanel = new JPanel();
 			bottomPanel.setLayout(new GridLayout(3,2));
 			bottomPanel.add(fridgeLightString);
@@ -113,6 +114,7 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 			getContentPane().add(topPanel);
 			getContentPane().add(middlePanel);
 			getContentPane().add(bottomPanel);
+			pack();
 			setVisible(true);
 		}
 	}
@@ -168,6 +170,6 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 	
 	
 	public static void main(String[] args) {
-		GUIDisplay display = new GUIDisplay();
+		RefrigeratorDisplay display = new GUIDisplay();
 	}
 }

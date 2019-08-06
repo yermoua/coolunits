@@ -15,7 +15,7 @@ public abstract class RefrigeratorDisplay extends Observable {
 		return instance;
 	}
 	
-	public void intitialize() {
+	public void initialize() {
 		context.initialize();
 	}
 

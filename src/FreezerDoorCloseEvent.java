@@ -1,4 +1,4 @@
-import java.util.EventObject;
+ 	import java.util.EventObject;
 
 
 public class FreezerDoorCloseEvent extends EventObject{
