@@ -18,6 +18,7 @@ public class FreezerDoorCloseState extends RefrigeratorState implements FreezerD
 	
 	@Override
 	public void run() {
+		FreezerDoorOpenManager.instance().addFreezerDoorOpenListener(instance);
 		display.doorClosed();
 		display.turnLightOff();
 		
@@ -31,8 +32,7 @@ public class FreezerDoorCloseState extends RefrigeratorState implements FreezerD
 	}
 
 	@Override
-	public void freezerDoorOpened(FreezerDoorOpenEvent event) {
-		// TODO Auto-generated method stub
+	public void freezerDoorOpen(FreezerDoorOpenEvent event) {
 		context.changeCurrentState(FreezerDoorOpenState.instance());
 	} 
 	

@@ -1,10 +1,10 @@
 
-public class FridgeDoorClosedState extends RefrigeratorState implements FreezerDoorOpenListener  { //need to add listeners
+public class FridgeDoorClosedState extends RefrigeratorState implements FridgeDoorOpenListener  {
 	
 	
 	private static FridgeDoorClosedState instance;
 	private FridgeDoorClosedState() {
-		//to make a singleton
+
 	}
 
 	public static FridgeDoorClosedState instance() {
@@ -13,26 +13,23 @@ public class FridgeDoorClosedState extends RefrigeratorState implements FreezerD
 		}
 		return instance;
 	}
+
+	@Override
+	public void leave() {
+		FridgeDoorOpenManager.instance().removeFridgeDoorOpenListener(instance);
+	
+	}
+
+	@Override
+	public void fridgeDoorOpened(FridgeDoorOpenEvent event) {
+		context.changeCurrentState(FridgeDoorOpenState.instance());
+	} 
 	
 	@Override
 	public void run() {
+		FridgeDoorOpenManager.instance().addFridgeDoorOpenListener(instance);
 		display.doorClosed();
 		display.turnLightOff();
 		
 	}
-
-	@Override
-	public void leave() {
-		// need to add listeners
-		FreezerDoorOpenManager.instance().removeFreezerDoorOpenListener(instance);
-	
-	}
-
-	@Override
-	public void freezerDoorOpened(FreezerDoorOpenEvent event) {
-		// TODO Auto-generated method stub
-		context.changeCurrentState(FridgeDoorOpenState.instance());
-	} 
-	
-
 }

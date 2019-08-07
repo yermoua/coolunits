@@ -78,7 +78,7 @@ public class FreezerDoorOpenManager {
 	public void processEvent(FreezerDoorOpenEvent event) {
 		EventListener[] listeners = listenerList.getListeners(FreezerDoorOpenListener.class);
 		for (int index = 0; index < listeners.length; index++) {
-			((FreezerDoorOpenListener) listeners[index]).freezerDoorOpened(event);
+			((FreezerDoorOpenListener) listeners[index]).freezerDoorOpen(event);
 		}
 	}
 }

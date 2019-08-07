@@ -48,7 +48,7 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 		private JLabel fridgeLightString = new JLabel("Fridge Light ");
 		private JLabel fridgeLightStatus = new JLabel("Light Off");
 		private JLabel freezerLightString = new JLabel("Freezer Light ");
-		private JLabel freezerLightStatus = new JLabel("             ");
+		private JLabel freezerLightStatus = new JLabel("Light Off");
 		
 		private JLabel fridgeTempString = new JLabel("Fridge Temp ");
 		private JLabel fridgeTempStatus = new JLabel("             ");
@@ -91,9 +91,8 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 			middlePanel.add(fridgeDoorCloser);
 			middlePanel.add(freezerDoorOpener);
 			middlePanel.add(freezerDoorCloser);
-			
-			fridgeDoorOpener.addActionListener(GUIDisplay.this);
 
+			
 			JPanel bottomPanel = new JPanel();
 			bottomPanel.setLayout(new GridLayout(3,2));
 			bottomPanel.add(fridgeLightString);
@@ -109,14 +108,20 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 			bottomPanel.add(freezerCompressorString);
 			bottomPanel.add(freezerComporessorStatus);
 			bottomPanel.setBackground(Color.WHITE);
+			
 	
 			getContentPane().setLayout(new GridLayout(3,1));
 			getContentPane().add(topPanel);
 			getContentPane().add(middlePanel);
 			getContentPane().add(bottomPanel);
+			
+			fridgeDoorOpener.addActionListener(GUIDisplay.this);
+			freezerDoorOpener.addActionListener(GUIDisplay.this);
+
 			pack();
 			setVisible(true);
 		}
+		
 	}
 	
 	@Override
@@ -136,30 +141,26 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 
 	@Override
 	public void turnLightOn() {
-		frame.fridgeLightStatus.setText("Light ON");
-		
+		frame.fridgeLightStatus.setText("Light ON");	
 	}
 
 
 	@Override
 	public void turnLightOff() {
-		// TODO Auto-generated method stub
-		
+		frame.freezerLightStatus.setText("Light Off");			
 	}
 
 
 	@Override
 	public void doorClosed() {
-		// TODO Auto-generated method stub
-		
+		turnLightOff();
 	}
 
 
 	@Override
 	public void doorOpened() {
-		// TODO Auto-generated method stub
-		
-	}
+		turnLightOn();
+ 	}
 
 
 	@Override

@@ -4,7 +4,7 @@ public class FridgeDoorCloseState extends RefrigeratorState implements FridgeDoo
 	
 	private static FridgeDoorCloseState instance;
 	private FridgeDoorCloseState() {
-		//to make a singleton
+		
 	}
 
 	public static FridgeDoorCloseState instance() {
@@ -23,14 +23,12 @@ public class FridgeDoorCloseState extends RefrigeratorState implements FridgeDoo
 
 	@Override
 	public void leave() {
-		// need to add listeners
 		FridgeDoorOpenManager.instance().removeFridgeDoorOpenListener(instance);
 	
 	}
 
 	@Override
 	public void fridgeDoorOpened(FridgeDoorOpenEvent event) {
-		// TODO Auto-generated method stub
 		context.changeCurrentState(FridgeDoorOpenState.instance());
 	} 
 	
