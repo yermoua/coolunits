@@ -17,11 +17,10 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 	
 	private GUIDisplay() {
 		frame = new SimpleDisplay();
-//		frame.pack();
 		initialize();
 	}
 	/**
-	 * Inner class because the outer class extends RefridgeratorDisplay.
+	 * Inner class because the outer class extends RefrigeratorDisplay.
 	 *
 	 */
 	private class SimpleDisplay extends JFrame {
@@ -33,7 +32,6 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 		private JLabel roomTemp = new JLabel("Room temp");
 		private JLabel desiredFridgeTemp = new JLabel("Desired fridge temp");
 		private JLabel desiredFreezerTemp = new JLabel("Desired freezer temp");
-		
 		
 		//open or close door
 		private GUIButton fridgeDoorCloser = new FridgeDoorCloseButton("Close fridge door");
@@ -64,6 +62,7 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 		private JTextField desiredFridgeTempText = new JTextField();
 		private JTextField desiredFreezerTempText = new JTextField();
 		
+//		private JLabel tester = new JLabel("testing");
 		
 		private SimpleDisplay() {
 			super("Refrigerator");
@@ -81,9 +80,6 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 			statusString.setFont(new Font("Georgia", Font.BOLD, 15));
 			statusString.setForeground(Color.RED);
 			topPanel.add(statusString);
-			
-			
-			
 
 			JPanel middlePanel = new JPanel();
 			middlePanel.setLayout(new GridLayout(2,2));
@@ -91,7 +87,6 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 			middlePanel.add(fridgeDoorCloser);
 			middlePanel.add(freezerDoorOpener);
 			middlePanel.add(freezerDoorCloser);
-
 			
 			JPanel bottomPanel = new JPanel();
 			bottomPanel.setLayout(new GridLayout(3,2));
@@ -108,12 +103,12 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 			bottomPanel.add(freezerCompressorString);
 			bottomPanel.add(freezerComporessorStatus);
 			bottomPanel.setBackground(Color.WHITE);
-			
 	
 			getContentPane().setLayout(new GridLayout(3,1));
 			getContentPane().add(topPanel);
 			getContentPane().add(middlePanel);
 			getContentPane().add(bottomPanel);
+//			getContentPane().add(tester);
 			
 			fridgeDoorOpener.addActionListener(GUIDisplay.this);
 			freezerDoorOpener.addActionListener(GUIDisplay.this);
@@ -121,8 +116,10 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 			pack();
 			setVisible(true);
 		}
-		
 	}
+	
+	
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent event) {
@@ -131,41 +128,37 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 
 
 
-
 	@Override
-	public void displayTimeRemaining(int time) {
-		// TODO Auto-generated method stub
+	public void fridgeDoorClosed() {
+		frame.fridgeLightStatus.setText("Light Off");
 		
 	}
 
-
 	@Override
-	public void turnLightOn() {
-		frame.fridgeLightStatus.setText("Light ON");	
+	public void fridgeDoorOpened() {
+		frame.fridgeLightStatus.setText("Light ON");
+//		frame.tester.setText("this works");
 	}
 
-
 	@Override
-	public void turnLightOff() {
-		frame.freezerLightStatus.setText("Light Off");			
+	public void freezerDoorClosed() {
+		frame.freezerLightStatus.setText("Light Off");	
 	}
 
+	@Override
+	public void freezerDoorOpened() {
+		frame.freezerLightStatus.setText("Light ON");
+	}
+	
 
 	@Override
-	public void doorClosed() {
-		turnLightOff();
+	public void fridgeTempDisplay(int value) {
+		frame.fridgeTempStatus.setText("value");
+		
 	}
 
-
 	@Override
-	public void doorOpened() {
-		turnLightOn();
- 	}
-
-
-	@Override
-	public void setTemp() {
-		// TODO Auto-generated method stub
+	public void freezerTempDisplay(int value) {
 		
 	}
 	

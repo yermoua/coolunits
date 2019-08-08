@@ -1,4 +1,3 @@
-
 /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
@@ -23,21 +22,20 @@ import java.util.EventListener;
 import javax.swing.event.EventListenerList;
 
 /**
- * Orchestrates clicks on the Door Open button. It maintains a list of listeners
- * for the DoorOpenEvent and invokes their doorOpened method when the button is
- * clicked.
+ * This class manages the listeners associated with states that must act when
+ * the timer ticks.
  * 
  * @author Brahma Dathan
  *
  */
-public class FridgeDoorOpenManager {
+public class TimerTickedManager {
 	private EventListenerList listenerList = new EventListenerList();
-	private static FridgeDoorOpenManager instance;
+	private static TimerTickedManager instance;
 
 	/**
-	 * Private to make it a singleton
+	 * The constructor is private to ensure that it is a singleton
 	 */
-	private FridgeDoorOpenManager() {
+	private TimerTickedManager() {
 	}
 
 	/**
@@ -45,9 +43,9 @@ public class FridgeDoorOpenManager {
 	 * 
 	 * @return the only instance of the class
 	 */
-	public static FridgeDoorOpenManager instance() {
+	public static TimerTickedManager instance() {
 		if (instance == null) {
-			instance = new FridgeDoorOpenManager();
+			instance = new TimerTickedManager();
 		}
 		return instance;
 	}
@@ -55,31 +53,33 @@ public class FridgeDoorOpenManager {
 	/**
 	 * Adds a listener
 	 * 
-	 * @param listener an object that wants to listen to the event
+	 * @param listener
+	 *            the listener to be added
 	 */
-	public void addFridgeDoorOpenListener(FridgeDoorOpenListener listener) {
-		listenerList.add(FridgeDoorOpenListener.class, listener);
-		
+	public void addTimerTickedListener(TimerTickedListener listener) {
+		listenerList.add(TimerTickedListener.class, listener);
 	}
 
 	/**
 	 * Removes a listener
 	 * 
-	 * @param listener the object to be removed
+	 * @param listener
+	 *            the listener to be removed
 	 */
-	public void removeFridgeDoorOpenListener(FridgeDoorOpenListener listener) {
-		listenerList.remove(FridgeDoorOpenListener.class, listener);
+	public void removeTimerTickedListener(TimerTickedListener listener) {
+		listenerList.remove(TimerTickedListener.class, listener);
 	}
 
 	/**
-	 * Handles the request to open the door.
+	 * Processes the event by calling the timerTicked method of each listener
 	 * 
-	 * @param event the CookRequestEvent object
+	 * @param event
 	 */
-	public void processEvent(FridgeDoorOpenEvent event) {
-		EventListener[] listeners = listenerList.getListeners(FridgeDoorOpenListener.class);
+	public void processEvent(TimerTickedEvent event) {
+		EventListener[] listeners = listenerList
+				.getListeners(TimerTickedListener.class);
 		for (int index = 0; index < listeners.length; index++) {
-			((FridgeDoorOpenListener) listeners[index]).fridgeDoorOpened(event);
+			((TimerTickedListener) listeners[index]).timerTicked(event);
 		}
 	}
 }

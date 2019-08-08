@@ -9,7 +9,7 @@ public class RefrigeratorContext {
 	private RefrigeratorContext() {
 		instance = this;
 		refrigeratorDisplay = RefrigeratorDisplay.instance();
-		currentState = FridgeDoorCloseState.instance();
+		currentState = FridgeDoorClosedState.instance();
 	}
 
 	/**
@@ -24,7 +24,8 @@ public class RefrigeratorContext {
 	}
 	
 	public void initialize() {
-		instance.changeCurrentState(FridgeDoorCloseState.instance());
+//		instance.changeCurrentState(FridgeDoorCloseState.instance());
+	
 	}
 	
 	public void changeCurrentState(RefrigeratorState nextState) {

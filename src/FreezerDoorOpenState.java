@@ -25,8 +25,7 @@ public class FreezerDoorOpenState extends RefrigeratorState implements FreezerDo
 	@Override
 	public void run() {
 		FreezerDoorCloseManager.instance().addFreezerDoorCloseListener(this);
-		display.turnLightOn();
-		display.doorOpened();
+		display.freezerDoorClosed();
 	}
 
 

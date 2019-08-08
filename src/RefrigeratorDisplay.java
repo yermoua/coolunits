@@ -19,18 +19,17 @@ public abstract class RefrigeratorDisplay extends Observable {
 		context.initialize();
 	}
 
-	public abstract void displayTimeRemaining(int time);
+	public abstract void fridgeDoorClosed();
 
-	public abstract void turnLightOn();
-
-	public abstract void turnLightOff();
-
-	public abstract void doorClosed();
-
-	public abstract void doorOpened();
+	public abstract void fridgeDoorOpened();
 	
-	public abstract void setTemp();
-	
-	
+	public abstract void freezerDoorClosed();
 
+	public abstract void freezerDoorOpened();
+	
+	public abstract void fridgeTempDisplay(int value);
+	
+	public abstract void freezerTempDisplay(int value);
+	
+	
 }
